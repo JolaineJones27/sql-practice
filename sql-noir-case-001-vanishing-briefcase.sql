@@ -3,6 +3,7 @@
   -- 2. Any notes or insights as SQL comments
   -- 3. Your final conclusion: who did it?
 
+-- ran this to get the crime scene info for anything that happened involving that lounge and a briefcase
 SELECT *
 FROM crime_scene
 WHERE location = 'Blue Note Lounge' 
@@ -11,6 +12,7 @@ WHERE location = 'Blue Note Lounge'
 -- got this result: id	date	type	location	description
 -- 76	19851120	theft	Blue Note Lounge	A briefcase containing sensitive documents vanished. A witness reported a man in a trench coat with a scar on his left cheek fleeing the scene.
 
+-- ran this to find trench coat
 SELECT *
 FROM suspects
 WHERE attire LIKE '%trench coat%'
@@ -20,7 +22,7 @@ WHERE attire LIKE '%trench coat%'
 -- 183	Vincent Malone	trench coat	left cheek
 -- 237	Christopher Black	trench coat	right cheek
 
-  
+-- ran this to see their statements  
 SELECT * FROM interviews WHERE suspect_id = 3;
 -- got this result: suspect_id	transcript
 -- suspect_id	transcript
