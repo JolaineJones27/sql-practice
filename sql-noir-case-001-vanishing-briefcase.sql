@@ -11,20 +11,27 @@ WHERE location = 'Blue Note Lounge'
 -- got this result: id	date	type	location	description
 -- 76	19851120	theft	Blue Note Lounge	A briefcase containing sensitive documents vanished. A witness reported a man in a trench coat with a scar on his left cheek fleeing the scene.
 
-SELECT * 
+SELECT *
 FROM suspects
-WHERE description LIKE '%trench coat%';
+WHERE attire LIKE '%trench coat%'
 
-SELECT transcript FROM interviews
-WHERE suspect_id = (
-    SELECT id FROM suspects
-    WHERE attire LIKE '%trench coat%'
-);
+  -- got these results: id	name	attire	scar
+-- 3	Frankie Lombardi	trench coat	left cheek
+-- 183	Vincent Malone	trench coat	left cheek
+-- 237	Christopher Black	trench coat	right cheek
 
--- ID 76 did it!
+  
+SELECT * FROM interviews WHERE suspect_id = 3;
+-- got this result: suspect_id	transcript
+-- suspect_id	transcript
+-- 3	NULL
+SELECT * FROM interviews WHERE suspect_id = 183;
+-- got this result which is the answer to who did it:
+suspect_id	transcript
+-- 183	I wasn’t going to steal it, but I did.
+SELECT * FROM interviews WHERE suspect_id = 237;
+-- No results yet. Execute a query to see the results.
 
+-- Vincent Malone did it.
 
--- ok, the SELECT * FROM suspects WHERE 'description' LIKE '%trench coat%' works and I don't know why but it didn't at first without the '' 
-
--- I'm kinda confused. only one result came up I think - is it the same answer?
 
