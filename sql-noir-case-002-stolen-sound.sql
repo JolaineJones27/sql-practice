@@ -3,7 +3,7 @@
   -- 2. Any notes or insights as SQL comments
   -- 3. Your final conclusion: who did it?
 
--- ran this
+-- ran this to find the record that has the exact date and location:
 SELECT * FROM crime_scene
 WHERE date = 19830715
   AND location LIKE '%West Hollywood Records%';
@@ -11,7 +11,7 @@ WHERE date = 19830715
 -- id	date	type	location	description
 -- 65	19830715	theft	West Hollywood Records	A prized vinyl record was stolen from the store during a busy evening.
 
-  -- ran this
+  -- ran this to get the witness records for id 65:
   SELECT *
 FROM witnesses
 WHERE crime_scene_id = 65;
@@ -21,7 +21,7 @@ WHERE crime_scene_id = 65;
 -- 28	65	I saw a man wearing a red bandana rushing out of the store.
 -- 75	65	The main thing I remember is that he had a distinctive gold watch on his wrist.
 
--- ran this 
+-- ran this to get at least one of the clues
 SELECT *
 FROM suspects
 WHERE bandana_color = 'red'
@@ -51,7 +51,7 @@ WHERE bandana_color = 'red'
 -- 94	David Vega	red	gold belt buckle
 -- 97	Rico Delgado	red	gold watch
 
--- ran this
+-- ran this to get the suspects that had both clues:
 SELECT *
 FROM interviews
 WHERE suspect_id IN (35, 44, 97);
